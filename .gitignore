@@ -1,0 +1,7 @@
+*parts/*
+GPyckage/__pycache__/*.pyc
+*.log
+*.gcode
+*_bin
+*_xml
+*_split
