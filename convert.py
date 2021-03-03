@@ -247,7 +247,7 @@ while True:
         x = regx.search(line).group(0)[1:] # X111.111 without first symbol
         y = regy.search(line).group(0)[1:] # same for Y
         # finally, main action
-        sl = ScanLine(P,V,float(x) - X0,float(y) - Y0)
+        sl = ScanLine(P,V,float(x) + X0,float(y) + Y0)
         lastX = sl.X # we will need last X,Y of this layer @ the beginning of the next one
         lastY = sl.Y    
         logfile.write(sl.dump() + "\n")
