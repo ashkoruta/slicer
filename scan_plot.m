@@ -1,25 +1,29 @@
 close all
 %%
-LayerXY = cell(1,175);
 base = "combined_xy";
-%base = "ilc_new_sw_split";
-for i = 1:5
+%base = "fullplate_split";
+for i = 1:4
     fname = base + sprintf("/layer%d.xy",i);
     fprintf(fname + "\n");
-    data = parsePyXY(fname);
-    LayerXY{i} = data;
-    %continue;
-    data = [0,0,0,0;data]; % add initial point
-    for j = 2:size(data,1)
-        if data(j,1) > 0
-            c = 'r';
-        else 
-            c = 'b';
+    fid = fopen(fname,'r');
+    LayerXY = readXY(fid);
+    for j = 1:length(LayerXY)
+        data = LayerXY{j}{:,:};
+        data = [0,0,0,0;data]; % add initial point
+        for k = 2:size(data,1)
+            if data(k,1) > 0
+                c = 'r';
+            else 
+                c = 'b';
+            end
+            plot([data(k-1,3),data(k,3)],[data(k-1,4),data(k,4)],c);
+            axis square
+            xlim([-25 25])
+            ylim([-25 25])
+            pause(0.01)
+            hold on
         end
-        plot([data(j-1,3),data(j,3)],[data(j-1,4),data(j,4)],c);
-        axis square
-        pause(0.01)
-        hold on
     end
     hold off
+    fclose(fid);
 end
