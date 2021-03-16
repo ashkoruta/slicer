@@ -5,3 +5,4 @@ GPyckage/__pycache__/*.pyc
 *_bin
 *_xml
 *_split
+*.zip

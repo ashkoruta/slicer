@@ -26,7 +26,7 @@ os.mkdir('combined_xy')
 os.mkdir('combined_bin')
 
 # read in one file from each directory, parse them in, combine, write out
-for i in range(1,fileCountMax):
+for i in range(1,fileCountMax+1): # Python does not include last number in the range
     # names for combined files
     combined_xml = "combined_xml/scan_{:03d}.xml".format(i)
     combined_xy = "combined_xy/layer{}.xy".format(i)
